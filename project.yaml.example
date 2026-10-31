@@ -1,0 +1,40 @@
+# Hermes Game Studios — Project Configuration Template
+# Copy this to project.yaml and edit via /settings or the config-set.sh helper.
+# Avoid hand-editing YAML — use the helpers to preserve formatting and provenance.
+
+project:
+  name: "My Game"
+  stage: "Concept"  # Concept | Systems Design | Technical Setup | Pre-Production | Production | Polish | Release
+  engine:
+    name: ""        # Godot | Unity | Unreal (set by /setup-engine)
+    version: ""     # e.g., "4.3", "2022.3", "5.4"
+    language: ""    # GDScript | C# | C++ | Blueprint (set by /setup-engine)
+  code_root: ""     # Resolved from engine.name by helpers (src/ | Assets/ | Source/<Module>/)
+  specialists: {}   # Filled by /setup-engine based on engine
+
+modes:
+  rigor: "minimal"           # minimal | standard | full
+  automation: "guided"       # guided | collaborative | autonomous
+  review_mode: "solo"        # solo | lean | full (derived from rigor, overrideable)
+  workflow: "minimal"        # minimal | standard | full (derived from rigor, overrideable)
+  story_granularity: "coarse" # coarse | standard | fine (derived from rigor, overrideable)
+  team_size: "solo"          # solo | small | medium | large
+
+docs:
+  density: "sparse"          # sparse | normal | dense (derived from rigor, overrideable)
+
+qa:
+  level: "minimal"           # minimal | standard | full (derived from rigor, overrideable)
+
+testing:
+  strict: {}                 # Per-type overrides: logic, integration, visual, ui, config (true/false)
+
+performance:
+  cpu_budget_ms: 16.6        # Target frame budget (60 FPS = 16.6ms)
+  gpu_budget_ms: 16.6
+  memory_budget_mb: 512
+
+platforms:
+  - "Windows"
+  - "Linux"
+  - "macOS"

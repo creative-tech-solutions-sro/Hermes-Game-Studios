@@ -1,19 +1,19 @@
 <p align="center">
-  <h1 align="center">Claude Code Game Studios</h1>
+  <h1 align="center">Hermes Game Studios</h1>
   <p align="center">
-    Turn a single Claude Code session into a full game development studio.
+    Turn a single Hermes Agent session into a full game development studio.
     <br />
-    49 agents. 74 skills. One coordinated AI team.
+    49 agents. 72 skills. One coordinated AI team.
   </p>
 </p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-  <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-49-blueviolet" alt="49 Agents"></a>
-  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-74-green" alt="74 Skills"></a>
-  <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-15-orange" alt="15 Hooks"></a>
-  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-14-red" alt="14 Rules"></a>
-  <a href="https://code.claude.com/docs"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
+  <a href=".hermes/agents"><img src="https://img.shields.io/badge/agents-49-blueviolet" alt="49 Agents"></a>
+  <a href=".hermes/skills"><img src="https://img.shields.io/badge/skills-72-green" alt="72 Skills"></a>
+  <a href=".hermes/hooks"><img src="https://img.shields.io/badge/hooks-12-orange" alt="12 Hooks"></a>
+  <a href=".hermes/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
+  <a href="https://hermes-agent.nousresearch.com/docs"><img src="https://img.shields.io/badge/built%20for-Hermes%20Agent-f5f5f5?logo=github" alt="Built for Hermes Agent"></a>
   <a href="https://www.buymeacoffee.com/donchitos3"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20this%20project-FFDD00?logo=buymeacoffee&logoColor=black" alt="Buy Me a Coffee"></a>
   <a href="https://github.com/sponsors/Donchitos"><img src="https://img.shields.io/badge/GitHub%20Sponsors-Support%20this%20project-ea4aaa?logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"></a>
 </p>
@@ -24,7 +24,7 @@
 
 Building a game solo with AI is powerful — but a single chat session has no structure. No one stops you from hardcoding magic numbers, skipping design docs, or writing spaghetti code. There's no QA pass, no design review, no one asking "does this actually fit the game's vision?"
 
-**Claude Code Game Studios** solves this by giving your AI session the structure of a real studio. Instead of one general-purpose assistant, you get 49 specialized agents organized into a studio hierarchy — directors who guard the vision, department leads who own their domains, and specialists who do the hands-on work. Each agent has defined responsibilities, escalation paths, and quality gates.
+**Hermes Game Studios** solves this by giving your AI session the structure of a real studio. Instead of one general-purpose assistant, you get 49 specialized agents organized into a studio hierarchy — directors who guard the vision, department leads who own their domains, and specialists who do the hands-on work. Each agent has defined responsibilities, escalation paths, and quality gates.
 
 The result: you still make every decision, but now you have a team that asks the right questions, catches mistakes early, and keeps your project organized from first brainstorm to launch.
 
@@ -34,11 +34,10 @@ The result: you still make every decision, but now you have a team that asks the
 
 - [What's Included](#whats-included)
 - [Studio Hierarchy](#studio-hierarchy)
-- [Slash Commands](#slash-commands)
+- [Skills (Slash Commands)](#skills-slash-commands)
 - [Does it produce games, or documents?](#does-it-produce-games-or-documents)
 - [Getting Started](#getting-started)
 - [Configuration](#configuration)
-- [Upgrading](#upgrading)
 - [Project Structure](#project-structure)
 - [How It Works](#how-it-works)
 - [Design Philosophy](#design-philosophy)
@@ -55,89 +54,145 @@ The result: you still make every decision, but now you have a team that asks the
 | Category | Count | Description |
 |----------|-------|-------------|
 | **Agents** | 49 | Specialized subagents across design, programming, art, audio, narrative, QA, and production |
-| **Skills** | 74 | Slash commands for every workflow phase (`/start`, `/design-system`, `/create-epics`, `/create-stories`, `/dev-story`, `/story-done`, etc.) |
-| **Hooks** | 15 | Automated validation on commits, pushes, asset changes, design-doc reads, writes and registries, session lifecycle, agent audit trail, and gap detection |
-| **Rules** | 14 | Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code, scene and asset files, and more |
-| **Templates** | 62 | Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility, and more |
+| **Skills** | 72 | Workflow commands for every phase (`/start`, `/brainstorm`, `/design-system`, `/create-epics`, `/dev-story`, `/story-done`, etc.) |
+| **Hooks** | 12+ | Automated validation on commits, asset changes, session lifecycle, agent audit trail |
+| **Rules** | 11 | Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code |
+| **Templates** | 39 | Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility |
 
 ## Studio Hierarchy
 
 Agents are organized into three tiers, matching how real studios operate:
 
-```
-Tier 1 — Directors
-  creative-director    technical-director    producer
+### Directors (3) — Vision & Decisions
+| Agent | Role |
+|-------|------|
+| `creative-director` | Highest creative authority — vision, tone, aesthetic direction |
+| `technical-director` | Highest technical authority — architecture, engine, performance |
+| `producer` | Production authority — scope, schedule, resource allocation |
 
-Tier 2 — Department Leads
-  game-designer        lead-programmer       art-director
-  audio-director       narrative-director    qa-lead
-  release-manager      localization-lead
+### Department Leads (9) — Domain Ownership
+| Agent | Domain |
+|-------|--------|
+| `game-designer` | Core mechanics, systems, progression, balance |
+| `art-director` | Visual identity, style guides, asset pipeline |
+| `audio-director` | Sound design, music, voice, implementation |
+| `narrative-director` | Story, worldbuilding, characters, dialogue |
+| `lead-programmer` | Code quality, architecture enforcement, tech debt |
+| `qa-lead` | Test strategy, evidence standards, release gates |
+| `ux-designer` | Player-facing flows, HUD, menus, accessibility |
+| `devops-engineer` | CI/CD, build pipeline, deployment, tooling |
+| `community-manager` | Player communication, feedback loops, live ops |
 
-Tier 3 — Specialists
-  gameplay-programmer  engine-programmer     ai-programmer
-  network-programmer   tools-programmer      ui-programmer
-  systems-designer     level-designer        economy-designer
-  technical-artist     sound-designer        writer
-  world-builder        ux-designer           prototyper
-  performance-analyst  devops-engineer       analytics-engineer
-  security-engineer    qa-tester             accessibility-specialist
-  live-ops-designer    community-manager
-```
+### Specialists (37) — Hands-On Execution
 
-Each agent declares a model in its frontmatter: the three directors ask for
-Opus, `lead-programmer` and fifteen specialists name Sonnet, and the remaining thirty
-**inherit your session's model**. Treat the tiers as seniority of role, not as
-a billing plan — most of the studio runs on whatever model you are already using.
+**Design & Systems**
+- `systems-designer` — System architecture, dependencies, data flow
+- `level-designer` — Level layout, pacing, encounter design
+- `economy-designer` — Resources, currencies, sinks, progression curves
+- `live-ops-designer` — Events, seasons, retention, monetization
+- `writer` — Dialogue, lore, item descriptions, UI text
+- `localization-lead` — i18n pipeline, cultural adaptation, LQA
 
-### Engine Specialists
+**Programming**
+- `gameplay-programmer` — Mechanics, player systems, AI behavior
+- `engine-programmer` — Core engine subsystems, rendering, physics
+- `network-programmer` — Multiplayer, replication, lag compensation
+- `ui-programmer` — Menus, HUD, input handling, animation
+- `tools-programmer` — Editor tools, pipeline automation, content tools
+- `performance-analyst` — Profiling, optimization, budgets
+- `analytics-engineer` — Telemetry, events, funnels, A/B testing
+- `security-engineer` — Anti-cheat, data protection, platform compliance
+- `ai-programmer` — Behavior trees, utility AI, ML integration
+- `prototyper` — Throwaway prototypes, mechanic validation
 
-The template includes agent sets for all three major engines. Use the set that matches your project:
+**Art & Audio**
+- `technical-artist` — Shaders, VFX, rigging, pipeline tools
+- `sound-designer` — SFX, ambience, implementation, middleware
+- `world-builder` — Environment composition, set dressing, lighting
+- `accessibility-specialist` — a11y compliance, testing, remediation
 
-| Engine | Lead Agent | Sub-Specialists |
-|--------|-----------|-----------------|
-| **Godot 4** | `godot-specialist` | GDScript, Shaders, GDExtension |
-| **Unity** | `unity-specialist` | DOTS/ECS, Shaders/VFX, Addressables, UI Toolkit |
-| **Unreal Engine 5** | `unreal-specialist` | GAS, Blueprints, Replication, UMG/CommonUI |
+**Engine Specialists** (choose your engine set)
+- **Godot**: `godot-specialist`, `godot-gdscript-specialist`, `godot-csharp-specialist`, `godot-gdextension-specialist`, `godot-shader-specialist`
+- **Unity**: `unity-specialist`, `unity-dots-specialist`, `unity-addressables-specialist`, `unity-ui-specialist`, `unity-shader-specialist`
+- **Unreal**: `unreal-specialist`, `ue-blueprint-specialist`, `ue-gas-specialist`, `ue-replication-specialist`, `ue-umg-specialist`
 
-## Slash Commands
+## Skills (Slash Commands)
 
-Type `/` in Claude Code to access all 74 skills:
+Type `/` in Hermes to access all 72 skills:
 
 **Onboarding & Navigation**
-`/start` `/help` `/project-stage-detect` `/setup-engine` `/adopt` `/settings`
+- `/start` — Guided onboarding for new projects
+- `/help` — Browse all skills with context-aware suggestions
+- `/project-stage-detect` — Analyze an existing project
+- `/setup-engine` — Configure Godot/Unity/Unreal
+- `/adopt` — Migrate existing files to studio format
 
 **Game Design**
-`/brainstorm` `/map-systems` `/design-system` `/quick-design` `/review-all-gdds` `/propagate-design-change`
+- `/brainstorm` — Explore game ideas from scratch or with a hint
+- `/map-systems` — Decompose concept into systems with dependencies
+- `/design-system` — Author per-system GDDs (guided, section-by-section)
+- `/quick-design` — Rapid design iteration for small changes
+- `/review-all-gdds` — Holistic consistency check across all GDDs
+- `/propagate-design-change` — Cascade a design change to affected domains
 
-**Art & Assets**
-`/art-bible` `/asset-spec` `/asset-audit`
-
-**UX & Interface Design**
-`/ux-design` `/ux-review`
-
-**Architecture**
-`/create-architecture` `/architecture-decision` `/architecture-review` `/create-control-manifest`
-
-**Stories & Sprints**
-`/create-epics` `/create-stories` `/dev-story` `/sprint-plan` `/sprint-status` `/story-readiness` `/story-done` `/estimate`
-
-**Reviews & Analysis**
-`/design-review` `/code-review` `/balance-check` `/content-audit` `/scope-check` `/perf-profile` `/tech-debt` `/gate-check` `/consistency-check` `/security-audit`
-
-**QA & Testing**
-`/qa-plan` `/smoke-check` `/soak-test` `/regression-suite` `/test-setup` `/test-helpers` `/test-evidence-review` `/test-flakiness` `/skill-test` `/skill-improve`
+**Architecture & Technical**
+- `/create-architecture` — Master architecture document
+- `/architecture-decision` — Document ADRs (one per decision)
+- `/architecture-review` — Validate completeness, dependencies, engine fit
+- `/create-control-manifest` — Flat programmer rules from ADRs
+- `/test-setup` — Scaffold test framework + CI
+- `/ux-design` — Accessibility, interaction patterns, UX specs
 
 **Production**
-`/milestone-review` `/retrospective` `/bug-report` `/bug-triage` `/reverse-document` `/playtest-report`
+- `/create-epics` — Translate GDDs+ADRs into epics (per layer)
+- `/create-stories` — Break epics into implementable stories
+- `/sprint-plan` — Plan sprints with prioritized stories
+- `/dev-story` — Implement a story (routes to correct specialist)
+- `/code-review` — Architectural code review
+- `/story-done` — Verify acceptance criteria, close story
+- `/story-readiness` — Pre-implementation readiness check
+- `/smoke-check` — Build health gate per sprint
+- `/regression-suite` — Regression testing
+- `/qa-plan` — QA test plan per epic/sprint
+- `/bug-report` / `/bug-triage` — Bug logging and prioritization
+- `/scope-check` — Detect scope creep
+- `/sprint-status` — Quick sprint progress snapshot
+- `/retrospective` — Post-sprint review
 
-**Release**
-`/release-checklist` `/launch-checklist` `/changelog` `/patch-notes` `/hotfix` `/day-one-patch`
+**Polish & Release**
+- `/perf-profile` — CPU/GPU/memory profiling
+- `/balance-check` — Game balance analysis
+- `/asset-audit` — Naming, formats, size budgets
+- `/playtest-report` — Structured playtest sessions
+- `/security-audit` — Security review
+- `/localize` — Localization QA
+- `/release-checklist` — Pre-release validation
+- `/launch-checklist` — Final launch readiness
+- `/changelog` / `/patch-notes` — Internal and player-facing notes
+- `/team-release` — Coordinated release deployment
 
-**Creative & Content**
-`/prototype` `/vertical-slice` `/onboard` `/localize`
+**Team Orchestration** (multi-agent features)
+- `/team-combat` — Combat feature coordination
+- `/team-narrative` — Narrative feature coordination
+- `/team-ui` — UI feature coordination
+- `/team-audio` — Audio feature coordination
+- `/team-level` — Level feature coordination
+- `/team-live-ops` — Live ops coordination
+- `/team-qa` — QA coordination
+- `/team-polish` — Polish pass coordination
+- `/team-release` — Release coordination
 
-**Team Orchestration** (coordinate multiple agents on a single feature)
-`/team-combat` `/team-narrative` `/team-ui` `/team-release` `/team-polish` `/team-audio` `/team-level` `/team-live-ops` `/team-qa`
+**Quality Gates**
+- `/gate-check` — Phase gate verification (Concept→Systems Design→Technical Setup→Pre-Production→Production→Polish→Release)
+- `/design-review` — Per-system design validation
+- `/consistency-check` — Cross-GDD contradiction scan
+- `/vertical-slice` — Build and validate a vertical slice
+- `/prototype` — Throwaway prototype for mechanic validation
+
+**Maintenance**
+- `/settings` — View/change project settings (rigor, automation, etc.)
+- `/skill-improve` — Improve a skill from usage feedback
+- `/skill-test` — Test a skill against its contract
 
 ## Does it produce games, or documents?
 
@@ -173,35 +228,32 @@ clutter, not evidence.
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
-- [Claude Code](https://code.claude.com/docs/en/setup) — the native installer is recommended (`npm install -g @anthropic-ai/claude-code` also works, on Node.js 22+)
-- [Python 3](https://www.python.org/) — reads `project.yaml` for every skill and hook; without it every setting silently falls back to its default
-- Bash — runs every hook; built into macOS and Linux, and on Windows it comes with [Git for Windows](https://git-scm.com/downloads/win)
-- **Recommended**: [jq](https://jqlang.github.io/jq/) (for hook validation)
-
-Hooks fail gracefully if optional tools are missing — you just lose validation — with one deliberate exception: a commit that stages data JSON is blocked when there is no Python to validate it.
+- [Hermes Agent](https://hermes-agent.nousresearch.com/docs) — `curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash`
+- [Python 3](https://www.python.org/) — reads `project.yaml` for every skill
+- Bash — runs helper scripts; built into macOS and Linux, and on Windows it comes with [Git for Windows](https://git-scm.com/downloads/win)
+- **Recommended**: [yq](https://github.com/mikefarah/yq/) (for config helpers), [jq](https://jqlang.github.io/jq/)
 
 ### Setup
 
 1. **Clone or use as template**:
    ```bash
-   git clone https://github.com/Donchitos/Claude-Code-Game-Studios.git my-game
+   git clone https://github.com/your-org/Hermes-Game-Studios.git my-game
    cd my-game
    ```
 
-2. **Open Claude Code in the project's root folder** (the one holding
-   `CLAUDE.md` and `project.yaml`) and start a session:
+2. **Open Hermes Agent in the project's root folder** (the one holding
+   `HERMES.md` and `project.yaml`) and start a session:
    ```bash
-   claude
+   hermes
    ```
-   Starting it in a subfolder such as `src/` skips the project's hooks, deny
-   rules and ask-first permission mode.
+   Starting it in a subfolder such as `src/` skips the project's configuration.
 
 3. **Run `/start`** — the system asks where you are (no idea, vague concept,
    clear design, existing work) and guides you to the right workflow. No assumptions.
 
    Or jump directly to a specific skill if you already know what you need:
    - `/brainstorm` — explore game ideas from scratch
-   - `/setup-engine godot 4.7` — configure your engine if you already know
+   - `/setup-engine godot 4.6` — configure your engine if you already know
    - `/project-stage-detect` — analyze an existing project
 
 ## Configuration
@@ -249,48 +301,48 @@ View or change any setting with the `/settings` skill:
 /settings --local modes.review_mode=solo   # write to project.local.yaml (just you)
 ```
 
-Full schema and per-setting behavior: `.claude/docs/effects-map.md`.
-
-## Upgrading
-
-Already using an older version of this template? See [UPGRADING.md](UPGRADING.md)
-for step-by-step migration instructions, a breakdown of what changed between
-versions, and which files are safe to overwrite vs. which need a manual merge.
+Full schema and per-setting behavior: `.hermes/docs/settings-guidance.md`.
 
 ## Project Structure
 
 ```
-CLAUDE.md                           # Master configuration
-.claude/
-  settings.json                     # Hooks, permissions, safety rules
-  agents/                           # 49 agent definitions (markdown + YAML frontmatter)
-  skills/                           # 74 slash commands (subdirectory per skill)
-  hooks/                            # 18 scripts (bash) — 15 event hooks, two helpers they
-                                    #   source (yaml-helper.sh, update-check.sh), and one
-                                    #   opt-in diagnostic you wire yourself
-  rules/                            # 14 path-scoped coding standards
-  statusline.sh                     # Status line script (context%, model, stage, epic breadcrumb)
-  docs/
-    workflow-catalog.yaml           # 7-phase pipeline definition (read by /help)
-    templates/                      # 62 document templates (+ per-section guidance)
-src/                                # Game source code (Godot). The code root is
-                                    #   ENGINE-SPECIFIC: Unity compiles only
-                                    #   Assets/, Unreal builds from Source/<Module>/
-assets/                             # Art, audio, VFX, shaders, data files
-design/                             # GDDs, narrative docs, level designs
-docs/                               # Technical documentation and ADRs
-tests/                              # Test suites (unit, integration, performance, playtest)
-tools/                              # Build and pipeline tools
-prototypes/                         # Throwaway prototypes (isolated from src/)
-production/                         # Sprint plans, milestones, release tracking
-studio-tests/                       # QA for the skills and agents themselves — see below
+my-game/
+├── HERMES.md                    # Master configuration
+├── project.yaml                 # Machine-readable project config (engine, modes, stage)
+├── project.yaml.example         # Template for new projects
+├── .hermes/                     # Agents, skills, hooks, rules, docs, scripts
+├── src/                         # Game source code (Godot)
+│   # OR Assets/ for Unity
+│   # OR Source/<Module>/ for Unreal
+├── assets/                      # Game assets (art, audio, vfx, shaders, data)
+├── design/                      # Game design documents (gdd, narrative, levels, balance)
+│   ├── gdd/                     # Game Design Documents
+│   ├── art/                     # Art bible, style guides
+│   ├── ux/                      # UX specs, interaction patterns
+│   ├── assets/                  # Asset specs, entity inventory
+│   └── accessibility-requirements.md
+├── docs/                        # Technical documentation
+│   ├── architecture/            # Architecture docs, ADRs, control manifest
+│   └── engine-reference/        # Curated engine API snapshots
+├── tests/                       # Test suites (unit, integration, performance, playtest)
+├── tools/                       # Build and pipeline tools
+├── prototypes/                  # Throwaway prototypes (isolated from src/)
+├── production/                  # Production management
+│   ├── session-state/           # Ephemeral session state (active.md — gitignored)
+│   ├── session-logs/            # Session audit trail (gitignored)
+│   ├── sprints/                 # Sprint plans
+│   ├── epics/                   # Epic definitions and stories
+│   ├── qa/                      # QA evidence, playtests, smoke checks
+│   ├── security/                # Security audit reports
+│   └── milestones/              # Milestone definitions
+└── studio-tests/                # QA for the skills/agents themselves
 ```
 
 ### Testing your customizations
 
-CCGS is a template you are meant to edit. `studio-tests/` is how
+HGS is a template you are meant to edit. `studio-tests/` is how
 you check that an edited or newly written skill still holds up — a catalog of all
-74 skills and 49 agents, per-category quality rubrics, behavioral specs, and
+72 skills and 49 agents, per-category quality rubrics, behavioral specs, and
 templates for writing specs of your own.
 
 ```
@@ -327,61 +379,23 @@ This is **not** an auto-pilot system. Every agent follows a strict collaboration
 
 You stay in control. The agents provide structure and expertise, not autonomy.
 
-That is how a terminal session started at the project root behaves out of the
-box. The `guided` and `autonomous` automation settings, and Claude Code's own
-auto mode, trade some of these prompts for speed; see
-[setup-requirements.md](.claude/docs/setup-requirements.md) for the routes into
-auto mode.
+### File-Backed State
+
+**The file is the memory, not the conversation.** Conversations are ephemeral and
+will be compacted or lost. Files on disk persist across compactions and session crashes.
+
+- `production/session-state/active.md` — session checkpoint (read first after any compaction/crash)
+- `.hermes/scripts/` — deterministic helpers that emit observations, not verdicts
+- Subagents for research/exploration to keep main session clean
 
 ### Automated Safety
 
-**Hooks** run automatically on every session:
-
-| Hook | Trigger | What It Does |
-|------|---------|--------------|
-| `validate-commit.sh` | PreToolUse (Bash, PowerShell) | Checks for hardcoded values, TODO format, JSON validity, design doc sections — exits early if the command is not `git commit` |
-| `validate-push.sh` | PreToolUse (Bash, PowerShell) | Warns on pushes to protected branches, and on `git tag`, `git merge`, `gh release`, `butler push` and `steamcmd +run_app_build` — exits early for any other command |
-| `validate-read.sh` | PreToolUse (Read) | Refuses a whole-file read of a design doc over 40 KB and answers with its headings, so the retry reads one section (`features.read_guard`) |
-| `validate-write.sh` | PreToolUse (Write/Edit) | Warns, never blocks, when a write would break a rule the skills state: a file they never overwrite, the config guard, the prototype boundary, a localization freeze |
-| `validate-registry.sh` | PreToolUse (Write/Edit) | Warns when a write to the entity or TR-ID registry would delete or renumber an entry, or set a status its header does not list |
-| `validate-assets.sh` | PostToolUse (Write/Edit) | Checks data-file JSON under `assets/`, `Assets/` or `Content/`, and asset naming in Godot's `assets/` only — exits early if the file is under none of them |
-| `session-start.sh` | Session open | Shows current branch and recent commits for orientation |
-| `detect-gaps.sh` | Session open | Detects fresh projects (suggests `/start`) and missing design docs when code or prototypes exist |
-| `pre-compact.sh` | Before compaction | Logs the compaction (its output does not reach Claude — `session-start.sh` restores context afterwards) |
-| `notify.sh` | Permission prompt, or idle about a minute | Shows Windows toast notification via PowerShell |
-| `session-stop.sh` | Every response end, in the background | Archives `active.md` to session log and records git activity |
-| `log-agent.sh` | Agent spawned | Audit trail start — logs subagent invocation |
-| `log-agent-stop.sh` | Agent stops | Audit trail stop — completes subagent record |
-| `validate-agent-artifact.sh` | Agent stops | Warns when a subagent stops without writing the file its brief named |
-| `validate-skill-change.sh` | PostToolUse (Write/Edit) | Advises running `/skill-test` after any `.claude/skills/` change |
-
-> **Note**: `validate-commit.sh`, `validate-push.sh`, `validate-read.sh`, `validate-write.sh`, `validate-registry.sh`, `validate-assets.sh` and `validate-skill-change.sh` fire on every Bash, PowerShell, Read, Write or Edit tool call and exit immediately (exit 0) when the command or file path is not relevant. This is normal hook behavior — not a performance concern.
-
-**Permission rules** in `settings.json` auto-allow test runs and block dangerous operations (force push, `rm -rf`, reading `.env` files) in both the Bash and PowerShell tools. Read-only commands such as `git status`, `git log` and `ls` need no rule: Claude Code runs them without asking. The `git` rules match anywhere after `git`, so a git command whose text only mentions `push` followed later by ` +` or ` -f`, `clean` followed by ` -f`, or `reset` followed by `--hard` — a commit message such as `git commit -m "push + pull"` included — is denied too: reword the message.
-
-### Path-Scoped Rules
-
-Coding standards are automatically enforced based on file location. The paths
-below are Godot's. Each rule also matches the Unity and Unreal layouts: the code
-rules match C# under `Assets/**/Gameplay/` and C++ under `Source/**/Gameplay/` (and `Core`,
-`AI`, `Networking`, `UI`), data matches JSON under `Assets/**/Data/` and
-`Content/**/Data/`, shaders match by file type, and tests match
-C# under `Assets/Tests/` and C++ under `Source/**/Tests/`.
-
-| Path | Enforces |
-|------|----------|
-| `src/gameplay/**` | Data-driven values, delta time usage, no UI references |
-| `src/core/**` | Zero allocations in hot paths, thread safety, API stability |
-| `src/ai/**` | Performance budgets, debuggability, data-driven parameters |
-| `src/networking/**` | Server-authoritative, versioned messages, security |
-| `src/ui/**` | No game state ownership, localization-ready, accessibility |
-| `design/gdd/**` | Required sections per `modes.workflow`, formula format, edge cases |
-| `design/narrative/**` | Lore consistency, character voice, canon levels |
-| `assets/data/**/*.json` | JSON validity, naming conventions, schema rules |
-| `assets/shaders/**` | Naming conventions, performance targets, cross-platform rules |
-| `**/*.tscn`, `**/*.tres` | Scene and resource files changed in the editor where possible; safe hand-edit rules |
-| `tests/**` | Test naming, coverage requirements, fixture patterns |
-| `prototypes/**` | Relaxed standards, README required, hypothesis documented |
+Hooks run on session events (start, stop, pre/post tool use, compaction):
+- `session-start.sh` — restores context from `active.md`
+- `validate-commit.sh` / `validate-push.sh` — git safety
+- `validate-read.sh` / `validate-write.sh` — file operation guards
+- `validate-assets.sh` — asset data validation
+- `log-agent.sh` / `log-agent-stop.sh` — agent audit trail
 
 ## Design Philosophy
 
@@ -407,18 +421,24 @@ This is a **template**, not a locked framework. Everything is meant to be custom
 
 ## Platform Support
 
-Primary development on **Windows 10** with Git Bash. The hooks and scripts are also tested on **macOS** — its stock bash 3.2 and BSD tools, with and without `jq` — and on **Linux**. All hooks use POSIX-compatible patterns (`grep -E`, not `grep -P`) and include fallbacks for missing tools. The `notify.sh` hook uses PowerShell for Windows toast notifications and is a no-op elsewhere — desktop notifications on macOS/Linux are not yet wired. Please file issues for any platform-specific breakage.
+| Platform | Status |
+|----------|--------|
+| Linux | ✅ Full support |
+| macOS | ✅ Full support |
+| Windows (WSL2) | ✅ Full support |
+| Windows (native) | ⚠️ Path differences, see `.hermes/docs/windows-quirks.md` |
 
 ## Community
 
-- **Discussions** — [GitHub Discussions](https://github.com/Donchitos/Claude-Code-Game-Studios/discussions) for questions, ideas, and showcasing what you've built
-- **Issues** — [Bug reports and feature requests](https://github.com/Donchitos/Claude-Code-Game-Studios/issues)
+- **GitHub Discussions** — Questions, ideas, show & tell
+- **Issues** — Bug reports, feature requests
+- **Contributing** — PRs welcome for new agents, skills, templates, fixes
 
 ---
 
 ## Supporting This Project
 
-Claude Code Game Studios is free and open source. If it saves you time or helps you ship your game, consider supporting continued development:
+Hermes Game Studios is free and open source. If it saves you time or helps you ship your game, consider supporting continued development:
 
 <p>
   <a href="https://www.buymeacoffee.com/donchitos3"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
@@ -429,11 +449,11 @@ Claude Code Game Studios is free and open source. If it saves you time or helps 
 - **[Buy Me a Coffee](https://www.buymeacoffee.com/donchitos3)** — one-time support
 - **[GitHub Sponsors](https://github.com/sponsors/Donchitos)** — recurring support through GitHub
 
-Sponsorships help fund time spent maintaining skills, adding new agents, keeping up with Claude Code and engine API changes, and responding to community issues.
+Sponsorships help fund time spent maintaining skills, adding new agents, keeping up with Hermes Agent and engine API changes, and responding to community issues.
 
 ---
 
-*Built for Claude Code. Maintained and extended — contributions welcome via [GitHub Discussions](https://github.com/Donchitos/Claude-Code-Game-Studios/discussions).*
+*Built for Hermes Agent. Maintained and extended — contributions welcome via GitHub Discussions.*
 
 ## License
 
